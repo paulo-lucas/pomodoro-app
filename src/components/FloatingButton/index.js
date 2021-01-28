@@ -33,7 +33,7 @@ const buttonActions = {
     dispatch({ type: 'reset' });
   },
   open_settings: ({ navigation }) => {
-    navigation.navigate('TimeSelector');
+    navigation.navigate('SettingsPage');
   }
 }
 

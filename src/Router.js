@@ -6,7 +6,7 @@ import colors from './config/colorPallete.json';
 
 // Pages
 import Home from './pages/Home';
-import TimeSelector from './pages/TimeSelector';
+import SettingsPage from './pages/SettingsPage';
 
 // Contexts
 import { CurrentProvider } from './contexts/current';
@@ -35,13 +35,13 @@ export default function Router() {
         />
 
         <Screen
-          name="TimeSelector"
-          component={TimeSelector}
+          name="SettingsPage"
+          component={SettingsPage}
           options={{
             headerShown: false
           }}
         />
-        
+
       </Navigator>
     </CurrentProvider>
   )

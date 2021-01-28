@@ -5,7 +5,7 @@ import Styles from './styles';
 
 import { useCurrentContext } from '../../contexts/current';
 
-export default function TimeSelector({ navigation }) {
+export default function SettingsPage({ navigation }) {
   const { state, dispatch } = useCurrentContext();
 
   return (
