@@ -17,11 +17,11 @@ const initialState = {
 const reducerActions = {
   a_second_has_passed: (state, action) => {
     const current = state.isBreak ? state.breakTime : state.workTime;
-    
+
 
     if (state.isPaused || state.isFinished)
       return state;
-      
+
     if (current === 0) {
       return {
         ...state,
@@ -45,21 +45,11 @@ const reducerActions = {
         : state.breakTime
     }
   },
-  change_work_time: (state, action) => {
+  change_presets: (state, action) => {
     return {
       ...state,
       maxWorkTime: action.maxWorkTime,
-    }
-  },
-  change_break_time: (state, action) => {
-    return {
-      ...state,
       maxBreakTime: action.maxBreakTime,
-    }
-  },
-  change_series: (state, action) => {
-    return {
-      ...state,
       maxSeries: action.maxSeries,
     }
   },
