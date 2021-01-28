@@ -7,8 +7,8 @@ const initialState = {
   maxWorkTime: 25,
   breakTime: 5,
   maxBreakTime: 5,
-  series: 5,
-  maxSeries: 5,
+  series: 3,
+  maxSeries: 3,
   isBreak: false,
   isPaused: true,
   isFinished: false
@@ -17,25 +17,23 @@ const initialState = {
 const reducerActions = {
   a_second_has_passed: (state, action) => {
     const current = state.isBreak ? state.breakTime : state.workTime;
+    
 
     if (state.isPaused || state.isFinished)
       return state;
-
-    if (current === 0)
+      
+    if (current === 0) {
       return {
         ...state,
         series: state.isBreak
           ? state.series - 1
           : state.series,
-        isFinished: state.series === 1,
+        isFinished: state.isBreak && state.series == 1,
         isBreak: !state.isBreak,
-        workTime: state.isBreak && state.series !== 1
-          ? state.maxWorkTime
-          : state.workTime,
-        breakTime: !state.isBreak && state.series !== 1
-          ? state.maxBreakTime
-          : state.workTime
+        workTime: state.maxWorkTime,
+        breakTime: state.maxBreakTime
       };
+    }
 
     return {
       ...state,
