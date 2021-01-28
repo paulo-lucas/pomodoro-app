@@ -5,6 +5,7 @@ import * as Progress from 'react-native-progress';
 import colors from '../../config/colorPallete.json';
 import playButtonPng from '../../assets/play-button.png';
 import pauseButtonPng from '../../assets/pause-button.png';
+import resetButtonPng from '../../assets/reset-dark.png';
 import Styles from './styles';
 
 import { useCurrentContext } from '../../contexts/current';
@@ -39,7 +40,11 @@ export default function Timer() {
         indeterminateAnimationDuration={1200}
         thickness={Dimensions.get('window').width * 0.05}
         strokeCap="round"
-        color={state.isBreak ? colors.others[1] : colors.others[3]}
+        color={state.isFinished || state.isPaused
+          ? colors.others[4]
+          : state.isBreak
+            ? colors.others[1]
+            : colors.others[3]}
         borderWidth={0}
       />
 
@@ -49,7 +54,11 @@ export default function Timer() {
           onPress={() => dispatch({ type: state.isFinished ? 'reset' : 'toggle_pause' })}
         >
           <Image
-            source={state.isFinished || state.isPaused ? playButtonPng : pauseButtonPng}
+            source={state.isFinished
+              ? resetButtonPng
+              : state.isPaused
+                ? playButtonPng
+                : pauseButtonPng}
             style={Styles.pauseButton}
           />
 
