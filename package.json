@@ -1,6 +1,6 @@
 {
   "name": "pomodoro",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "App made to help workers focus with Pomodoro Technique",
   "repository": {
     "type": "git",

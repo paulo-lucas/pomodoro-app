@@ -47,7 +47,7 @@ export default function FloatingButton() {
       floatingIcon={menuPng}
       iconWidth={20}
       color={colors.secondary}
-      onPressItem={name => buttonActions[name]({ dispatch, navigation })}
+      onPressItem={button_name => buttonActions[button_name]({ dispatch, navigation })}
     />
   )
 }

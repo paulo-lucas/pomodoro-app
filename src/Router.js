@@ -14,7 +14,6 @@ import { CurrentProvider } from './contexts/current';
 const { Navigator, Screen } = createStackNavigator();
 
 export default function Router() {
-
   return (
     <CurrentProvider>
       <Navigator initialRouteName="Home">

@@ -16,8 +16,7 @@ const initialState = {
 
 const reducerActions = {
   a_second_has_passed: (state, action) => {
-    const current = state.isBreak ? state.breakTime : state.workTime;
-
+    const current = state.isBreak ? state.breakTime : state.workTime; // Contador atual
 
     if (state.isPaused || state.isFinished)
       return state;
@@ -25,16 +24,17 @@ const reducerActions = {
     if (current === 0) {
       return {
         ...state,
-        series: state.isBreak
+        series: state.isBreak                           // Finaliza uma série caso: (Contador == 0 && isBreak == true)
           ? state.series - 1
           : state.series,
-        isFinished: state.isBreak && state.series == 1,
-        isBreak: !state.isBreak,
-        workTime: state.maxWorkTime,
-        breakTime: state.maxBreakTime
+        isFinished: state.isBreak && state.series == 1, // Finaliza Pomodoro caso: (Contador == 0 && isBreak == true && Ultima série)
+        isBreak: !state.isBreak,                        // Alterna isBreak caso tenha terminado o contador atual
+        workTime: state.maxWorkTime,                    // Reseta workTime
+        breakTime: state.maxBreakTime                   // Reseta breakTime
       };
     }
 
+    // Passagem comum de 1 segundo
     return {
       ...state,
       workTime: !state.isBreak
@@ -72,6 +72,7 @@ const reducerActions = {
   }
 };
 
+// Recebe action.type e repassa para o reducer actions
 const currentReducer = (state, action) => {
   const func = reducerActions[action.type];
 
@@ -90,12 +91,8 @@ function CurrentProvider(props) {
   return <CurrentContext.Provider value={currentData} {...props} />;
 }
 
-function CurrentConsumer() {
-  return <CurrentContext.Consumer {...props} />;
-}
-
 function useCurrentContext() {
   return useContext(CurrentContext);
 }
 
-export { CurrentProvider, CurrentConsumer, useCurrentContext };
+export { CurrentProvider, useCurrentContext };
